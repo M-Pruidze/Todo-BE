@@ -10,9 +10,9 @@ const {
 module.exports.allTasks = async (req,res) => {
     try {
         const result = await allTasks();
-        res.send({
+        res.send(
             result,
-        });
+        );
     } catch (error) {
         res.status(500)
             .send({
@@ -28,7 +28,7 @@ module.exports.newTask = async (req,res) => {
     try {
         if (typeof req.body.text == 'string' && typeof req.body.isChecked == 'boolean') {
             const result = await newTask(req, res);
-            res.send({'data': result});
+            res.send(result);
         } else {
             throw {
                 message: "Invalid fields type",
@@ -55,9 +55,9 @@ module.exports.newTask = async (req,res) => {
 // update a task
 module.exports.updatedTask = async (req,res) => {
     try {
-        if (typeof req.body.text == 'string' && typeof req.body.isChecked == 'boolean') {
+        if (typeof req.body.text == 'string' || typeof req.body.isChecked == 'boolean') {
             const result = await updatedTask(req, res);
-            res.send({result});
+            res.send(result);
         } else {
             throw {
                 message:"Invalid fields type",
@@ -86,7 +86,7 @@ module.exports.deletedTask = async (req,res) => {
     try {
         if (req.params.id && req.params.id.length >= 24) {
             const result = await deletedTask(req, res);
-            res.send({"data": result});
+            res.send(result);
         } else {
             throw {
                 message: "Id not provided",
