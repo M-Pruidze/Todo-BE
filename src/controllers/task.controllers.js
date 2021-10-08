@@ -3,7 +3,8 @@ const {
     allTasks,
     newTask,
     updatedTask,
-    deletedTask
+    deletedTask,
+    deleteAllTasks,
     } = require('../data/task.data');
 
 // get all tasks
@@ -106,5 +107,23 @@ module.exports.deletedTask = async (req,res) => {
                     status: 500,
                 });
         }
+    }
+};
+
+// delete all tasks
+
+module.exports.deleteAllTasks = async (req,res) => {
+    try {
+        const result = await deleteAllTasks();
+        res.send(
+            result,
+        );
+    } catch (error) {
+        res.status(500)
+            .send({
+                message: "Internal server error",
+                error: "Internal server",
+                status: 500,
+            });
     }
 };

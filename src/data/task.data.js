@@ -27,3 +27,8 @@ module.exports.deletedTask = async (req, res) => {
   const deletedTask = await Task.findByIdAndRemove({_id: req.params.id});
   return deletedTask;
 };
+
+module.exports.deleteAllTasks = async () => {
+  const deleteAllTasks = await Task.deleteMany({});
+  return deleteAllTasks;
+};
