@@ -1,0 +1,8 @@
+heroku:
+ stage: deploy
+ only:
+ - master
+ script:
+ - git remote add heroku https://heroku:$1051841c-2d3b-43d5-89c2-c792c78fa884@git.heroku.com/todo-back-mp.git
+ - git push -f heroku master
+
